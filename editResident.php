@@ -7,7 +7,7 @@ include('header.html');
 require('connect_db.php');
 
 if(isset($_GET['sid'])){
-
+    $_SESSION['sid'] = $_GET['sid']; 
     $query = 'select * from resident where studentID = ' . $_GET['sid'] ;
 //'. $row['hallgov_position'] . '
     if(!($result = mysqli_query($dbc, $query)))
@@ -81,17 +81,26 @@ if(isset($_GET['sid'])){
                     }else if($row['hallgov_position']=='secretary'){
                         echo '<option value""></option>
                         <option value="president" >President</option>
-                        <option value="vice_president" selected>Vice President</option>
+                        <option value="vice_president">Vice President</option>
                         <option value="floorRep">Floor Representative</option>
                         <option value="secretary" selected>Secretary</option>';
+                    }else{
+                        echo '<option value"" selected></option>
+                        <option value="president" >President</option>
+                        <option value="vice_president">Vice President</option>
+                        <option value="floorRep">Floor Representative</option>
+                        <option value="secretary">Secretary</option>';
                     }
 echo '
                     </select>
                 </span>
             </div>
             <br><br>
+            <a href="residents.php" class="btn btn-default" role="button">Cancel</a>
             <button type="submit" class="btn btn-success">Update</button>
+            <a href="removeResident.php?sid='.$_SESSION['sid'].'" class="btn btn-danger" role="button">Remove Resident</a>
         </form>
+        
     </body>
     ';
     }

@@ -2,7 +2,7 @@
 
 session_start();
 
-$sid = $_SESSION['sid'];
+$sid = $_POST['sid'];
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 $email = $_POST['email'];
@@ -10,14 +10,10 @@ $room = $_POST['room'];
 $hallpos = $_POST['hallpos'];
 
 require('connect_db.php');
+$query = 'insert into resident
+		values('.$sid.',"'.$fname.'","'.$lname.'","'.$email.'","'.$room.'","'.$hallpos.'")';
 
-$query = 'UPDATE resident
-		SET first_name = ' . '"' . $fname . '"'
-		. ', last_name = ' . '"' . $lname . '"'
-		. ', email = ' . '"' . $email . '"'
-		. ', room_number = ' . '"' . $room . '"'
-		. ', hallgov_position = ' . '"' . $hallpos . '"'
-		. ' WHERE studentID = ' . $sid;
+echo $query;
 
 	if(!($result = mysqli_query($dbc, $query)))
 	{
