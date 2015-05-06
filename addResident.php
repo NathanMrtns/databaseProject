@@ -5,9 +5,21 @@ session_start();
 include('header.html');
 
 ?>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('input[type=radio][name=ra]').change(function() {
+        if (this.value == 'yes') {
+            document.getElementById("raform").style.display = "inline-block";
+        }
+        else if (this.value == 'no') {
+            document.getElementById("raform").style.display = "none";
+        }
+    });
+});
+</script>
 
 <body>
-    <form class="navbar-form navbar" method="post" action="insertResident.php">
+    <form class="navbar-form navbar" name="resform" method="post" action="insertResident.php">
         <div class="alert alert-info">
             <h4>
                 Resident info
@@ -34,13 +46,11 @@ include('header.html');
         </div>
         <br>
         <div class="input-group">
-            RA: <input type="radio" name="ra" value="yes"> Yes <input type="radio" name="ra" value="no"> No
+            RA: <input type="radio" name="ra" id="ra" value="yes"> Yes <input type="radio" name="ra" id="ra" value="no" checked> No
         </div>
-        <!--
-        <div class="form-group">
-            RA in what floor: <input type="number" class="form-control" name="rafloor" placeholder="Search resident">
+        <div class="input-group" id="raform" style="display: none;">
+            RA in what floor: <input type="number" class="form-control" name="rafloor">
         </div>
-        -->
         <br>
         <div class="form-group">
             Hall Gov Position: 
