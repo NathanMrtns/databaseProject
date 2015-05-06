@@ -9,7 +9,7 @@ include('header.html');
 $(document).ready(function() {
 
     document.getElementById("add").onclick = function () {
-        window.location.replace("addResident.php");
+        window.location.replace("addStaff.php");
     };
 
 });
@@ -20,20 +20,19 @@ $(document).ready(function() {
     <form class="navbar-form navbar" method="post">
         <div class="alert alert-info">
             <h4>
-                Find a Resident
+                Find a Staff member
             </h4>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" name="search" placeholder="Search resident">
+            <input type="text" class="form-control" name="search" placeholder="Search staff">
         </div> By:
         <div class="form-group">
             <span> 
                 <select class="form-control" name="searchby">
                     <option value""></option>
-                    <option value="studentID">ID</option>
+                    <option value="staffID">ID</option>
                     <option value="first_name">First Name</option>
                     <option value="last_name">Last Name</option>
-                    <option value="room_number">Room</option>
                 </select>
             </span>
         </div>
@@ -61,7 +60,7 @@ $(document).ready(function() {
             }else{
                  print "<tr><th>Staff ID</th><th>First Name</th><th>Last Name</th>";
                 while($row = mysqli_fetch_array($result)){
-                    echo "<tr><td>" . $row['staffID'] . "</td><td> " . $row['first_name'] . "</td><td> " . $row['last_name'] . "</td><td><a href=editResident.php?sid=" . $row['staffID'].">Edit Staff</a></td></tr> ";
+                    echo "<tr><td>" . $row['staffID'] . "</td><td> " . $row['first_name'] . "</td><td> " . $row['last_name'] . "</td><td><a href=editStaff.php?sid=" . $row['staffID'].">Edit Staff</a></td></tr> ";
                 }
             }
             print"</table>";
