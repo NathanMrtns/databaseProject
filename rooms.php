@@ -26,14 +26,16 @@ include('header.html');
             if(mysqli_num_rows($result)==0){
                 echo "<tr><td> No Results were found </td></td>";
             }else{
-                 print "<tr><th>Room Number</th><th>Capacity</th><th>Has Mail?</th><th>Occupied</th>";
+                 print "<tr><th>Room Number</th><th>Has Mail?</th><th>Occupied</th>";
                 while($row = mysqli_fetch_array($result)){
                     if(($row['hasMail']==1) && ($row['occupied']==1)){
-                        echo "<tr><td>" . $row['room_number'] . "</td><td> " . $row['capacity'] . "</td><td> Yes </td><td> Yes </td><td><a href=editRoom.php?sid=" . $row['room_number'].">Edit Room</a></td></tr> ";
+                        echo "<tr><td>" . $row['room_number'] . "</td><td> Yes </td><td> Yes </td><td><a href=updateMail.php?sid=" . $row['room_number'].">Mail was picked up</a></td></tr> ";
                     }else if(($row['hasMail']==0) && ($row['occupied']==1)){
-                        echo "<tr><td>" . $row['room_number'] . "</td><td> " . $row['capacity'] . "</td><td> No </td><td> Yes </td><td><a href=editRoom.php?sid=" . $row['room_number'].">Edit Room</a></td></tr> ";
+                        echo "<tr><td>" . $row['room_number'] . "</td><td> No </td><td> Yes </td><td><a href=updateMail.php?sid=" . $row['room_number'].">Mail has arrived</a></td></tr> ";
                     }else if(($row['hasMail']==0) && ($row['occupied']==0)){
-                        echo "<tr><td>" . $row['room_number'] . "</td><td> " . $row['capacity'] . "</td><td> No </td><td> No </td><td><a href=editRoom.php?sid=" . $row['room_number'].">Edit Room</a></td></tr> ";
+                        echo "<tr><td>" . $row['room_number'] . "</td><td> No </td><td> No </td><td></td></tr> ";
+                    }else if(($row['hasMail']==1) && ($row['occupied']==0)){
+                        echo "<tr><td>" . $row['room_number'] . "</td><td> Yes </td><td> No </td><td></td></tr> ";
                     }
                 }
             }
