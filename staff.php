@@ -16,29 +16,7 @@ $(document).ready(function() {
 </script>
 
 <body>
-<!--
-    <form class="navbar-form navbar" method="post">
-        <div class="alert alert-info">
-            <h4>
-                Find a Staff member
-            </h4>
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" name="search" placeholder="Search staff">
-        </div> By:
-        <div class="form-group">
-            <span> 
-                <select class="form-control" name="searchby">
-                    <option value""></option>
-                    <option value="staffID">ID</option>
-                    <option value="first_name">First Name</option>
-                    <option value="last_name">Last Name</option>
-                </select>
-            </span>
-        </div>
-        <button type="submit" class="btn btn-default">Search</button>
-    </form>
--->
+
 <?php
 
     //connect to MySQL (host, user_name, password)
@@ -58,9 +36,9 @@ $(document).ready(function() {
             if(mysqli_num_rows($result)==0){
                 echo "<tr><td> No Results were found </td></td>";
             }else{
-                 print "<tr><th>Staff ID</th><th>First Name</th><th>Last Name</th>";
+                 print "<tr><th>Staff ID</th><th>First Name</th><th>Last Name</th><th>Address</th>";
                 while($row = mysqli_fetch_array($result)){
-                    echo "<tr><td>" . $row['staffID'] . "</td><td> " . $row['first_name'] . "</td><td> " . $row['last_name'] . "</td><td><a href=editStaff.php?sid=" . $row['staffID'].">Edit Staff</a></td></tr> ";
+                    echo "<tr><td>" . $row['staffID'] . "</td><td> " . $row['first_name'] . "</td><td> " . $row['last_name'] . "</td><td> " . $row['address'] . "</td><td><a href=editStaff.php?sid=" . $row['staffID'].">Edit Staff</a></td></tr> ";
                 }
             }
             print"</table>";

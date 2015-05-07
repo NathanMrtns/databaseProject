@@ -18,15 +18,16 @@ $query = 'DELETE FROM resident
 	}
 
 $query = 'UPDATE building_room
-	SET occupied = false
+	SET occupied = false,
+		studentID = NULL
 	WHERE room_number = "' . $_SESSION['oldRoom'] . '"';
 
 	if(!($result = mysqli_query($dbc, $query)))
 	{
-	    print ("Coudnot execute query! <br/>");
+	    print ("Coudnot execute query!2 <br/>");
 	    die(mysql_error());
 	}
-	
+
 	mysqli_close($dbc);
 	header( 'Location: residents.php' ) ;
     exit;

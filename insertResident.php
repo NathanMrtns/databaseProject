@@ -15,10 +15,10 @@ require('connect_db.php');
 
 if($isRA == 'yes'){
 	$query = 'insert into resident
-		values('.$sid.',"'.$fname.'","'.$lname.'","'.$email.'","'.$room.'","'.$hallpos.'",' . true . ','. $raFloor .')';
+		values('.$sid.',"'.$fname.'","'.$lname.'","'.$email.'","'.$room.'","'.$hallpos.'",true, '. $raFloor .')';
 	}else{
-		$query = 'insert into resident (studentID,first_name,last_name,email,hallgov_position)
-		values('.$sid.',"'.$fname.'","'.$lname.'","'.$email.'","'.$room.'","'.$hallpos. '",' . false . ',' . null . ')';
+		$query = 'insert into resident (studentID,first_name,last_name,email,room_number,hallgov_position)
+		values('.$sid.',"'.$fname.'","'.$lname.'","'.$email.'","'.$room.'","'.$hallpos. '")';
 	}
 
 	echo $query;
@@ -30,7 +30,8 @@ if($isRA == 'yes'){
 	} 
 
 	$query = 'UPDATE building_room
-	SET occupied = true
+	SET occupied = true,
+		studentID = ' . $sid . '
 	WHERE room_number="' . $room . '"';
 
 	if(!($result = mysqli_query($dbc, $query)))
