@@ -41,9 +41,26 @@ $(document).ready(function() {
             Email: <input type="email" class="form-control" name="email" placeholder="Email">
         </div>
         <br>
-        <div class="form-group">
-            Room: <input type="text" class="form-control" name="room" placeholder="Room Number">
-        </div>
+        <?php 
+        require('connect_db.php');
+        $query = 'select * from building_room where occupied = false';
+        
+        if(!($result = mysqli_query($dbc, $query)))
+        {
+            print ("Coudnot execute query! <br/>");
+            die(mysql_error());
+        } 
+
+        print '<div class="form-group">';
+        echo "Room: <span>
+                <select class='form-control' name='room'>"; 
+        while($row = mysqli_fetch_array($result)){
+                    echo "<option value=" . $row['room_number'].">". $row['room_number']."</option>";
+        }
+        echo '</select>
+        </span>
+        </div>';
+        ?>
         <br>
         <div class="input-group">
             RA: <input type="radio" name="ra" id="ra" value="yes"> Yes <input type="radio" name="ra" id="ra" value="no" checked> No

@@ -12,7 +12,7 @@ require('connect_db.php');
 $query = 'UPDATE staff
 		SET first_name = ' . '"' . $fname . '"'
 		. ', last_name = ' . '"' . $lname . '"'
-		. ', adress = '. '"' . $address . '"'
+		. ', address = '. '"' . $address . '"'
 		. ' WHERE staffID = ' . $sid;
 
 	if(!($result = mysqli_query($dbc, $query)))

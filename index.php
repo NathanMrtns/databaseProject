@@ -5,4 +5,4 @@ include('header.html');
 
 ?>
 
-<h1>Welcome to Hall Management System</h1>
+<h1>Welcome to the Hall Management System</h1>

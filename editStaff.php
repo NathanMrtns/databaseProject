@@ -39,7 +39,7 @@ if(isset($_GET['sid'])){
             </div>
             <br>
             <div class="form-group">
-                Address: <input type="text" class="form-control" name="address" placeholder="Adress" value="'. $row['adress'] .'">
+                Address: <input type="text" class="form-control" name="address" placeholder="Address" value="'. $row['address'] .'">
             </div>  
             </div>
             <br><br>
